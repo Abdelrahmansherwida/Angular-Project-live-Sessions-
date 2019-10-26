@@ -1,0 +1,58 @@
+<app-header></app-header>
+<p style="font-size: 2rem; font-weight: bold">bind-data works!</p>
+
+<div class="tableContainer">
+  <table class="table" cellspacing="0">
+    <tr class="headLine">
+      <th>Id</th>
+      <th>Name</th>
+      <th>email</th>
+      <th>adress</th>
+      <th>mobile</th>
+      <th>Bind from P to C</th>
+      <th>edit in child</th>
+      <th>edit with QueryParameters</th>
+      <th>edit in hidden-ID</th>
+    </tr>
+
+    <tr *ngFor="let user of userListArray">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.address }}</td>
+      <td>{{ user.mobile }}</td>
+
+      <td>
+        <button class="P2C" (click)="openDataBindChild(); userData = user">
+          pass data from P to C
+        </button>
+      </td>
+      <td>
+        <button class="EditInChild" (click)="openEditChild()">
+          Edit in child
+        </button>
+      </td>
+      <td>
+        <button class="QP">
+          Edit Query-Parameters
+        </button>
+      </td>
+      <td>
+        <button class="H_id">
+          Edit Hidden-Id
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<app-child
+  *ngIf="showDataBindChild"
+  [(showDataBindChildTrigger)]="showDataBindChild"
+  [userDataInChild]="userData"
+></app-child>
+<app-edit
+  *ngIf="showEditChild"
+  [(showEditChildTrigger)]="showEditChild"
+  (dataFromChild)="logDataFromChild($event)"
+></app-edit>

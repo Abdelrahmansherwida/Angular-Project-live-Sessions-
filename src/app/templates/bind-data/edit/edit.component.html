@@ -1,0 +1,70 @@
+<div class="popUpChild">
+  <div class="overLay" (click)="hide()"></div>
+  <div class="childinput">
+    <p>edit works!</p>
+    <form
+      (ngSubmit)="passDataFromChildToParent()"
+      #form="ngForm"
+      [formGroup]="editForm"
+    >
+      <ul>
+        <li>
+          <input
+            type="text"
+            maxlength="100"
+            value=""
+            placeholder="name"
+            formControlName="name"
+            autocomplete="off"
+            required
+          />
+        </li>
+        <li>
+          <input
+            type="email"
+            [email]="true"
+            maxlength="100"
+            value=""
+            placeholder="Email"
+            formControlName="email"
+            autocomplete="off"
+            required
+          />
+        </li>
+        <li>
+          <input
+            type="text"
+            value=""
+            placeholder="Address"
+            formControlName="address"
+            autocomplete="off"
+            required
+          />
+        </li>
+        <li>
+          <input
+            type="text"
+            value=""
+            placeholder="Mobile"
+            formControlName="mobile"
+            (keypress)="numberValidation($event)"
+            autocomplete="off"
+            maxlength="11"
+            required
+          />
+        </li>
+        <li>
+          <button
+            type="submit"
+            [ngClass]="
+              !editForm.valid ? 'submitButtonDisabled' : 'submitButtonEnabled'
+            "
+            [disabled]="editForm.valid ? false : true"
+          >
+            Edit
+          </button>
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+
+  .headLine {
+    background: #4c4c4c;
+    color: #fff;
+    font-size: 2rem;
+    th {
+      padding: 1rem;
+    }
+  }
+  tr {
+    font-size: 1.8rem;
+  }
+  tr:nth-child(even) {
+    background-color: #eee;
+  }
+  td {
+    padding: 1.5rem;
+  }
+  button {
+    padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+  }
+  .P2C {
+    background: #0285d1dd;
+  }
+
+  .EditInChild {
+    background: #158700;
+  }
+  .QP {
+    background: #065d6b;
+  }
+  .H_id {
+    background: #a40202;
+  }
+}

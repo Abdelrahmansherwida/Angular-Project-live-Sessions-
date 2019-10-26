@@ -1,0 +1,18 @@
+$main-font-size: 20px;
+$main-color: #fff;
+
+.navBar {
+  background: #353535;
+  width: 100%;
+  ul {
+    color: $main-color;
+    font-size: $main-font-size;
+    display: inline-flex;
+    list-style-type: none;
+
+    li {
+      padding-right: 20px;
+      cursor: pointer;
+    }
+  }
+}
