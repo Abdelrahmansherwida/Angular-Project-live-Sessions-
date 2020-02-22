@@ -1,21 +1,24 @@
 <app-header></app-header>
 <p style="font-size: 2rem; font-weight: bold">create works!</p>
 
-<form>
+<form [formGroup]="createForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
   <input
     type="text"
     autocomplete="off"
     maxlength="100"
     value=""
+    formControlName="name"
     placeholder="Enter Name"
     required
   />
   <input
     type="email"
+    [email]="true"
     maxlength="100"
-    autocomplete="off"
     value=""
-    placeholder=" Enter Email"
+    placeholder="Email"
+    formControlName="email"
+    autocomplete="off"
     required
   />
   <input
@@ -23,6 +26,7 @@
     maxlength="100"
     autocomplete="off"
     value=""
+    formControlName="address"
     placeholder="Enter address "
     required
   />
@@ -31,12 +35,14 @@
     autocomplete="off"
     value=""
     maxlength="11"
+    formControlName="mobile"
     placeholder="Email Mobile"
+    (keypress)="numberCheckValidation($event)"
     required
   />
-  <button
-    
-  >
+  <button>
+    <!-- create -->
+
     {{ submitButtonTittle }}
   </button>
 </form>

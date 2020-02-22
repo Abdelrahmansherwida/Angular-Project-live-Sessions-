@@ -33,12 +33,16 @@
         </button>
       </td>
       <td>
-        <button class="QP">
+        <button
+          class="QP"
+          [routerLink]="['/forms/create']"
+          [queryParams]="{ updateMode: true, id: user.id }"
+        >
           Edit Query-Parameters
         </button>
       </td>
       <td>
-        <button class="H_id">
+        <button class="H_id" (click)="passHiddenId(user.id)"> 
           Edit Hidden-Id
         </button>
       </td>

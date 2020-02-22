@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -44,9 +46,80 @@ export class CreateComponent implements OnInit {
       mobile: '01234567805'
     }
   ];
+  updateMode = false;
+  userId;
+
+  userIndex;
+
+  // NOTE  Forms
+  createForm = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    address: new FormControl(''),
+    mobile: new FormControl('')
+  });
 
   submitButtonTittle = 'Create';
-  constructor() {}
+  constructor(private activatedRout: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkQueryParams();
+    this.checkHiddenId();
+  }
+
+  // NOTE  number Validation fun
+  numberCheckValidation(e) {
+    if ((48 <= e.keyCode && e.keyCode <= 57) || e.keyCode === 46) {
+    } else {
+      return false;
+    }
+  }
+
+  checkHiddenId() {
+    if (history.state.id) {
+      this.updateMode = history.state.updateMode;
+      this.userId = history.state.id;
+      this.submitButtonTittle = 'Edit';
+      this.displayUserData();
+    }
+  }
+
+  checkQueryParams() {
+    this.activatedRout.queryParams.subscribe(queryParams => {
+      if (queryParams.updateMode) {
+        this.updateMode = queryParams.updateMode;
+        this.userId = +queryParams.id;
+        this.submitButtonTittle = 'Edit';
+        this.displayUserData();
+      }
+    });
+  }
+
+  displayUserData() {
+    if (this.updateMode) {
+      for (const user of this.editUserDataArray) {
+        if (user.id === this.userId) {
+          this.userIndex = this.editUserDataArray.indexOf(user);
+        }
+      }
+
+      this.createForm.patchValue({
+        name: this.editUserDataArray[this.userIndex].name,
+        email: this.editUserDataArray[this.userIndex].email,
+        address: this.editUserDataArray[this.userIndex].address,
+        mobile: this.editUserDataArray[this.userIndex].mobile
+      });
+    }
+  }
+
+  // *********************
+  onSubmit() {
+    console.log('onSubmit >> ', this.createForm.value);
+  }
+
+
+  ViewChildFun(data?){
+
+    console.log("data in child is >>> ", data)
+  }
 }

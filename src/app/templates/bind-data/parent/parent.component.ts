@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parent',
@@ -49,7 +50,7 @@ export class ParentComponent implements OnInit {
   showEditChild = false;
   // properties
   userData;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
   openDataBindChild() {
@@ -61,5 +62,12 @@ export class ParentComponent implements OnInit {
 
   logDataFromChild(e) {
     console.log('data from child into parent', e.value);
+  }
+
+  // ***************
+  passHiddenId(userId) {
+    this.router.navigate(['/forms/create'], {
+      state: { updateMode: true, id: userId }
+    });
   }
 }
